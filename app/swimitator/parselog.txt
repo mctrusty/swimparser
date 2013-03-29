@@ -1,0 +1,63 @@
+   yacc.py: 292:PLY: PARSE DEBUG START
+   yacc.py: 337:
+   yacc.py: 338:State  : 0
+   yacc.py: 352:Stack  : . LexToken(NUMBER,10,1,0)
+   yacc.py: 366:Action : Shift and goto state 4
+   yacc.py: 337:
+   yacc.py: 338:State  : 4
+   yacc.py: 352:Stack  : NUMBER . LexToken(MULT,'x',1,2)
+   yacc.py: 366:Action : Shift and goto state 16
+   yacc.py: 337:
+   yacc.py: 338:State  : 16
+   yacc.py: 352:Stack  : NUMBER MULT . LexToken(NUMBER,200,1,3)
+   yacc.py: 366:Action : Shift and goto state 26
+   yacc.py: 337:
+   yacc.py: 338:State  : 26
+   yacc.py: 352:Stack  : NUMBER MULT NUMBER . $end
+   yacc.py: 389:Action : Reduce rule [count -> NUMBER MULT NUMBER] with [10,'x',200] and goto state 13
+   yacc.py: 423:Result : <instance @ 0x2491e18> (<swim_ast.node.Count instance at 0x02491 ...)
+   yacc.py: 337:
+   yacc.py: 338:State  : 1
+   yacc.py: 352:Stack  : count . $end
+   yacc.py: 391:Action : Reduce rule [empty -> <empty>] with [] and goto state 11
+   yacc.py: 462:Result : <NoneType @ 0x1e2200cc> (None)
+   yacc.py: 337:
+   yacc.py: 338:State  : 13
+   yacc.py: 352:Stack  : count empty . $end
+   yacc.py: 389:Action : Reduce rule [skill -> empty] with [None] and goto state 14
+   yacc.py: 423:Result : <instance @ 0x2491e90> (<swim_ast.node.Stroke instance at 0x0249 ...)
+   yacc.py: 337:
+   yacc.py: 338:State  : 11
+   yacc.py: 352:Stack  : count skill . $end
+   yacc.py: 391:Action : Reduce rule [empty -> <empty>] with [] and goto state 11
+   yacc.py: 462:Result : <NoneType @ 0x1e2200cc> (None)
+   yacc.py: 337:
+   yacc.py: 338:State  : 23
+   yacc.py: 352:Stack  : count skill empty . $end
+   yacc.py: 389:Action : Reduce rule [zone -> empty] with [None] and goto state 21
+   yacc.py: 423:Result : <instance @ 0x2491e40> (<swim_ast.node.Zone instance at 0x02491E ...)
+   yacc.py: 337:
+   yacc.py: 338:State  : 24
+   yacc.py: 352:Stack  : count skill zone . $end
+   yacc.py: 391:Action : Reduce rule [empty -> <empty>] with [] and goto state 11
+   yacc.py: 462:Result : <NoneType @ 0x1e2200cc> (None)
+   yacc.py: 337:
+   yacc.py: 338:State  : 30
+   yacc.py: 352:Stack  : count skill zone empty . $end
+   yacc.py: 389:Action : Reduce rule [interval -> empty] with [None] and goto state 24
+   yacc.py: 423:Result : <instance @ 0x2491eb8> (<swim_ast.node.Interval instance at 0x02 ...)
+   yacc.py: 337:
+   yacc.py: 338:State  : 32
+   yacc.py: 352:Stack  : count skill zone interval . $end
+   yacc.py: 389:Action : Reduce rule [set -> count skill zone interval] with [<instance @ 0x2491e18>,<instance @ 0x2491e90>,<instance @ 0x2491e40>,<instance @ 0x2491eb8>] and goto state 7
+   yacc.py: 423:Result : <instance @ 0x2491f08> (<swim_ast.node.Set instance at 0x02491F0 ...)
+   yacc.py: 337:
+   yacc.py: 338:State  : 2
+   yacc.py: 352:Stack  : set . $end
+   yacc.py: 389:Action : Reduce rule [set_list -> set] with [<instance @ 0x2491f08>] and goto state 4
+   yacc.py: 423:Result : <instance @ 0x2491df0> (<swim_ast.node.SetList instance at 0x024 ...)
+   yacc.py: 337:
+   yacc.py: 338:State  : 3
+   yacc.py: 352:Stack  : set_list . $end
+   yacc.py: 484:Done   : Returning <instance @ 0x2491df0> (<swim_ast.node.SetList instance at 0x024 ...)
+   yacc.py: 485:PLY: PARSE DEBUG END

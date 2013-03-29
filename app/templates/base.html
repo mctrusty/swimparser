@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	{% block head %}
+	<title>Swimparser - {% block title %}{% endblock %}</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="description" content="" />
+	<meta name="keywords" content="" />
+	<meta name="robots" content="index,follow" />
+	<link rel="stylesheet" type="text/css" href="/stylesheets/base.css" />
+	{% endblock %}
+</head>
+
+<body>
+<div id="container" class = "document">
+	<div id="header">
+		<h1>
+			Swimparser
+		</h1>
+	</div>
+	<div id="navigation">
+		<ul>
+			<li><a href="#">Home</a></li>
+			<li><a href="#" id="about">About</a></li>
+			<li><a href="#">Services</a></li>
+			<li><a href="#">Contact us</a></li>
+			<li><a href = "{{url}}">{{url_linktext}}</a>
+		</ul>
+	</div>
+	<div id="content">
+		{% block content %}
+		{% endblock %}
+	</div>
+	<div id="footer">
+		{% block footer %}
+			(&#x254;)2013 Michael J. Cox
+		{% endblock %}
+	</div>
+</div>
+</body>
+</html>

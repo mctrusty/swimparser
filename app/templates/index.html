@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block title %} Home {% endblock %}
+{% block head %}
+	{{ super () }}
+      <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.1/themes/base/jquery-ui.css" />
+      <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+      <script src="http://code.jquery.com/ui/1.10.1/jquery-ui.js"></script>
+      <link rel="stylesheet" href="/resources/demos/style.css" />
+      <script type="text/javascript">
+	$(document).ready(function() {
+	  var about = $("#help_dialog").dialog({width:500, position: {
+	                my: 'center center',
+	                at: 'center center', 
+	                of: $('#rightpane')}
+	        })
+	  $("#about").click(function() {
+		about.dialog("open");
+		return false;
+	  }) 
+	});
+      </script>
+{% endblock %}
+{% block content %}
+	<div id="leftpane">
+	  <form action="/parse" method="post">
+	    <div><textarea name="workout" rows="10" cols="40"></textarea></div>
+	    <div>
+			<input type="radio" name="format" value="json" checked>JSON</input>
+			<input type="radio" name="format" value="xml">XML</input>
+		</div>
+		<div><input type="submit" value="Translate"></div>
+	  </form>
+	</div>
+	<div class="rightdoc" id="rightpane">
+	  <div id="help_dialog" title="About" style="display:none">
+	    <p>Swimparser parses basic swim workout notation out into json or xml.
+	    <p>The basic format for a line is: <br/>[reps x] distance [stroke] [skill] [zone] [@time]
+	    <p>e.g.: 3 x 200 fr EN3 @2:30 <br/> 
+	      <span style="margin-left:2.7em">4 x 50 K @1:00</span><br />
+	      <br />
+	      [reps] = integer <br/>
+	      [stroke] = (fr)ee | bk|ba|back | (br)east | (fr)ee | (ch)oice | IM | im <br />
+	      [skill] = (dr)ill | (Kk)ick <br />
+	      [zone] = EN | ZONE integer <br />
+	      [@time] = @(int):int <br />
+		  <br />
+		  <a href="/help/help.html" >Extended Documentation, including Multi-sets</a>
+	  </div>
+	</div>
+{% endblock %}

@@ -1,0 +1,420 @@
+Created by PLY version 3.4 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> workout
+Rule 1     workout -> <empty>
+Rule 2     workout -> set_list
+Rule 3     set_list -> set_list set
+Rule 4     set_list -> set_list multi_set
+Rule 5     set_list -> set
+Rule 6     set_list -> multi_set
+Rule 7     multi_set -> NUMBER MULT L_BRACKET set_list R_BRACKET
+Rule 8     set -> count skill zone interval
+Rule 9     empty -> <empty>
+Rule 10    count -> NUMBER
+Rule 11    count -> NUMBER MULT NUMBER
+Rule 12    skill -> empty
+Rule 13    skill -> STROKE
+Rule 14    skill -> DRILL
+Rule 15    skill -> STROKE DRILL
+Rule 16    skill -> KICK
+Rule 17    skill -> STROKE KICK
+Rule 18    zone -> ZONE
+Rule 19    zone -> empty
+Rule 20    interval -> AT NUMBER COLON NUMBER
+Rule 21    interval -> AT NUMBER
+Rule 22    interval -> empty
+
+Terminals, with rules where they appear
+
+AT                   : 20 21
+COLON                : 20
+DRILL                : 14 15
+KICK                 : 16 17
+L_BRACKET            : 7
+MULT                 : 7 11
+NUMBER               : 7 10 11 11 20 20 21
+R_BRACKET            : 7
+STROKE               : 13 15 17
+ZONE                 : 18
+error                : 
+
+Nonterminals, with rules where they appear
+
+count                : 8
+empty                : 12 19 22
+interval             : 8
+multi_set            : 4 6
+set                  : 3 5
+set_list             : 2 3 4 7
+skill                : 8
+workout              : 0
+zone                 : 8
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . workout
+    (1) workout -> .
+    (2) workout -> . set_list
+    (3) set_list -> . set_list set
+    (4) set_list -> . set_list multi_set
+    (5) set_list -> . set
+    (6) set_list -> . multi_set
+    (8) set -> . count skill zone interval
+    (7) multi_set -> . NUMBER MULT L_BRACKET set_list R_BRACKET
+    (10) count -> . NUMBER
+    (11) count -> . NUMBER MULT NUMBER
+
+    $end            reduce using rule 1 (workout -> .)
+    NUMBER          shift and go to state 5
+
+    count                          shift and go to state 1
+    set                            shift and go to state 2
+    workout                        shift and go to state 3
+    set_list                       shift and go to state 4
+    multi_set                      shift and go to state 6
+
+state 1
+
+    (8) set -> count . skill zone interval
+    (12) skill -> . empty
+    (13) skill -> . STROKE
+    (14) skill -> . DRILL
+    (15) skill -> . STROKE DRILL
+    (16) skill -> . KICK
+    (17) skill -> . STROKE KICK
+    (9) empty -> .
+
+    STROKE          shift and go to state 7
+    DRILL           shift and go to state 9
+    KICK            shift and go to state 8
+    ZONE            reduce using rule 9 (empty -> .)
+    AT              reduce using rule 9 (empty -> .)
+    NUMBER          reduce using rule 9 (empty -> .)
+    $end            reduce using rule 9 (empty -> .)
+    R_BRACKET       reduce using rule 9 (empty -> .)
+
+    skill                          shift and go to state 10
+    empty                          shift and go to state 11
+
+state 2
+
+    (5) set_list -> set .
+
+    R_BRACKET       reduce using rule 5 (set_list -> set .)
+    NUMBER          reduce using rule 5 (set_list -> set .)
+    $end            reduce using rule 5 (set_list -> set .)
+
+
+state 3
+
+    (0) S' -> workout .
+
+
+
+state 4
+
+    (2) workout -> set_list .
+    (3) set_list -> set_list . set
+    (4) set_list -> set_list . multi_set
+    (8) set -> . count skill zone interval
+    (7) multi_set -> . NUMBER MULT L_BRACKET set_list R_BRACKET
+    (10) count -> . NUMBER
+    (11) count -> . NUMBER MULT NUMBER
+
+    $end            reduce using rule 2 (workout -> set_list .)
+    NUMBER          shift and go to state 5
+
+    count                          shift and go to state 1
+    set                            shift and go to state 12
+    multi_set                      shift and go to state 13
+
+state 5
+
+    (7) multi_set -> NUMBER . MULT L_BRACKET set_list R_BRACKET
+    (10) count -> NUMBER .
+    (11) count -> NUMBER . MULT NUMBER
+
+    MULT            shift and go to state 14
+    STROKE          reduce using rule 10 (count -> NUMBER .)
+    DRILL           reduce using rule 10 (count -> NUMBER .)
+    KICK            reduce using rule 10 (count -> NUMBER .)
+    ZONE            reduce using rule 10 (count -> NUMBER .)
+    AT              reduce using rule 10 (count -> NUMBER .)
+    NUMBER          reduce using rule 10 (count -> NUMBER .)
+    $end            reduce using rule 10 (count -> NUMBER .)
+    R_BRACKET       reduce using rule 10 (count -> NUMBER .)
+
+
+state 6
+
+    (6) set_list -> multi_set .
+
+    R_BRACKET       reduce using rule 6 (set_list -> multi_set .)
+    NUMBER          reduce using rule 6 (set_list -> multi_set .)
+    $end            reduce using rule 6 (set_list -> multi_set .)
+
+
+state 7
+
+    (13) skill -> STROKE .
+    (15) skill -> STROKE . DRILL
+    (17) skill -> STROKE . KICK
+
+    ZONE            reduce using rule 13 (skill -> STROKE .)
+    AT              reduce using rule 13 (skill -> STROKE .)
+    NUMBER          reduce using rule 13 (skill -> STROKE .)
+    $end            reduce using rule 13 (skill -> STROKE .)
+    R_BRACKET       reduce using rule 13 (skill -> STROKE .)
+    DRILL           shift and go to state 16
+    KICK            shift and go to state 15
+
+
+state 8
+
+    (16) skill -> KICK .
+
+    ZONE            reduce using rule 16 (skill -> KICK .)
+    AT              reduce using rule 16 (skill -> KICK .)
+    NUMBER          reduce using rule 16 (skill -> KICK .)
+    $end            reduce using rule 16 (skill -> KICK .)
+    R_BRACKET       reduce using rule 16 (skill -> KICK .)
+
+
+state 9
+
+    (14) skill -> DRILL .
+
+    ZONE            reduce using rule 14 (skill -> DRILL .)
+    AT              reduce using rule 14 (skill -> DRILL .)
+    NUMBER          reduce using rule 14 (skill -> DRILL .)
+    $end            reduce using rule 14 (skill -> DRILL .)
+    R_BRACKET       reduce using rule 14 (skill -> DRILL .)
+
+
+state 10
+
+    (8) set -> count skill . zone interval
+    (18) zone -> . ZONE
+    (19) zone -> . empty
+    (9) empty -> .
+
+    ZONE            shift and go to state 18
+    AT              reduce using rule 9 (empty -> .)
+    NUMBER          reduce using rule 9 (empty -> .)
+    $end            reduce using rule 9 (empty -> .)
+    R_BRACKET       reduce using rule 9 (empty -> .)
+
+    empty                          shift and go to state 19
+    zone                           shift and go to state 17
+
+state 11
+
+    (12) skill -> empty .
+
+    ZONE            reduce using rule 12 (skill -> empty .)
+    AT              reduce using rule 12 (skill -> empty .)
+    NUMBER          reduce using rule 12 (skill -> empty .)
+    $end            reduce using rule 12 (skill -> empty .)
+    R_BRACKET       reduce using rule 12 (skill -> empty .)
+
+
+state 12
+
+    (3) set_list -> set_list set .
+
+    R_BRACKET       reduce using rule 3 (set_list -> set_list set .)
+    NUMBER          reduce using rule 3 (set_list -> set_list set .)
+    $end            reduce using rule 3 (set_list -> set_list set .)
+
+
+state 13
+
+    (4) set_list -> set_list multi_set .
+
+    R_BRACKET       reduce using rule 4 (set_list -> set_list multi_set .)
+    NUMBER          reduce using rule 4 (set_list -> set_list multi_set .)
+    $end            reduce using rule 4 (set_list -> set_list multi_set .)
+
+
+state 14
+
+    (7) multi_set -> NUMBER MULT . L_BRACKET set_list R_BRACKET
+    (11) count -> NUMBER MULT . NUMBER
+
+    L_BRACKET       shift and go to state 20
+    NUMBER          shift and go to state 21
+
+
+state 15
+
+    (17) skill -> STROKE KICK .
+
+    ZONE            reduce using rule 17 (skill -> STROKE KICK .)
+    AT              reduce using rule 17 (skill -> STROKE KICK .)
+    NUMBER          reduce using rule 17 (skill -> STROKE KICK .)
+    $end            reduce using rule 17 (skill -> STROKE KICK .)
+    R_BRACKET       reduce using rule 17 (skill -> STROKE KICK .)
+
+
+state 16
+
+    (15) skill -> STROKE DRILL .
+
+    ZONE            reduce using rule 15 (skill -> STROKE DRILL .)
+    AT              reduce using rule 15 (skill -> STROKE DRILL .)
+    NUMBER          reduce using rule 15 (skill -> STROKE DRILL .)
+    $end            reduce using rule 15 (skill -> STROKE DRILL .)
+    R_BRACKET       reduce using rule 15 (skill -> STROKE DRILL .)
+
+
+state 17
+
+    (8) set -> count skill zone . interval
+    (20) interval -> . AT NUMBER COLON NUMBER
+    (21) interval -> . AT NUMBER
+    (22) interval -> . empty
+    (9) empty -> .
+
+    AT              shift and go to state 23
+    NUMBER          reduce using rule 9 (empty -> .)
+    $end            reduce using rule 9 (empty -> .)
+    R_BRACKET       reduce using rule 9 (empty -> .)
+
+    interval                       shift and go to state 22
+    empty                          shift and go to state 24
+
+state 18
+
+    (18) zone -> ZONE .
+
+    AT              reduce using rule 18 (zone -> ZONE .)
+    NUMBER          reduce using rule 18 (zone -> ZONE .)
+    $end            reduce using rule 18 (zone -> ZONE .)
+    R_BRACKET       reduce using rule 18 (zone -> ZONE .)
+
+
+state 19
+
+    (19) zone -> empty .
+
+    AT              reduce using rule 19 (zone -> empty .)
+    NUMBER          reduce using rule 19 (zone -> empty .)
+    $end            reduce using rule 19 (zone -> empty .)
+    R_BRACKET       reduce using rule 19 (zone -> empty .)
+
+
+state 20
+
+    (7) multi_set -> NUMBER MULT L_BRACKET . set_list R_BRACKET
+    (3) set_list -> . set_list set
+    (4) set_list -> . set_list multi_set
+    (5) set_list -> . set
+    (6) set_list -> . multi_set
+    (8) set -> . count skill zone interval
+    (7) multi_set -> . NUMBER MULT L_BRACKET set_list R_BRACKET
+    (10) count -> . NUMBER
+    (11) count -> . NUMBER MULT NUMBER
+
+    NUMBER          shift and go to state 5
+
+    count                          shift and go to state 1
+    set                            shift and go to state 2
+    set_list                       shift and go to state 25
+    multi_set                      shift and go to state 6
+
+state 21
+
+    (11) count -> NUMBER MULT NUMBER .
+
+    STROKE          reduce using rule 11 (count -> NUMBER MULT NUMBER .)
+    DRILL           reduce using rule 11 (count -> NUMBER MULT NUMBER .)
+    KICK            reduce using rule 11 (count -> NUMBER MULT NUMBER .)
+    ZONE            reduce using rule 11 (count -> NUMBER MULT NUMBER .)
+    AT              reduce using rule 11 (count -> NUMBER MULT NUMBER .)
+    NUMBER          reduce using rule 11 (count -> NUMBER MULT NUMBER .)
+    $end            reduce using rule 11 (count -> NUMBER MULT NUMBER .)
+    R_BRACKET       reduce using rule 11 (count -> NUMBER MULT NUMBER .)
+
+
+state 22
+
+    (8) set -> count skill zone interval .
+
+    R_BRACKET       reduce using rule 8 (set -> count skill zone interval .)
+    NUMBER          reduce using rule 8 (set -> count skill zone interval .)
+    $end            reduce using rule 8 (set -> count skill zone interval .)
+
+
+state 23
+
+    (20) interval -> AT . NUMBER COLON NUMBER
+    (21) interval -> AT . NUMBER
+
+    NUMBER          shift and go to state 26
+
+
+state 24
+
+    (22) interval -> empty .
+
+    NUMBER          reduce using rule 22 (interval -> empty .)
+    $end            reduce using rule 22 (interval -> empty .)
+    R_BRACKET       reduce using rule 22 (interval -> empty .)
+
+
+state 25
+
+    (7) multi_set -> NUMBER MULT L_BRACKET set_list . R_BRACKET
+    (3) set_list -> set_list . set
+    (4) set_list -> set_list . multi_set
+    (8) set -> . count skill zone interval
+    (7) multi_set -> . NUMBER MULT L_BRACKET set_list R_BRACKET
+    (10) count -> . NUMBER
+    (11) count -> . NUMBER MULT NUMBER
+
+    R_BRACKET       shift and go to state 27
+    NUMBER          shift and go to state 5
+
+    count                          shift and go to state 1
+    set                            shift and go to state 12
+    multi_set                      shift and go to state 13
+
+state 26
+
+    (20) interval -> AT NUMBER . COLON NUMBER
+    (21) interval -> AT NUMBER .
+
+    COLON           shift and go to state 28
+    NUMBER          reduce using rule 21 (interval -> AT NUMBER .)
+    $end            reduce using rule 21 (interval -> AT NUMBER .)
+    R_BRACKET       reduce using rule 21 (interval -> AT NUMBER .)
+
+
+state 27
+
+    (7) multi_set -> NUMBER MULT L_BRACKET set_list R_BRACKET .
+
+    NUMBER          reduce using rule 7 (multi_set -> NUMBER MULT L_BRACKET set_list R_BRACKET .)
+    $end            reduce using rule 7 (multi_set -> NUMBER MULT L_BRACKET set_list R_BRACKET .)
+    R_BRACKET       reduce using rule 7 (multi_set -> NUMBER MULT L_BRACKET set_list R_BRACKET .)
+
+
+state 28
+
+    (20) interval -> AT NUMBER COLON . NUMBER
+
+    NUMBER          shift and go to state 29
+
+
+state 29
+
+    (20) interval -> AT NUMBER COLON NUMBER .
+
+    NUMBER          reduce using rule 20 (interval -> AT NUMBER COLON NUMBER .)
+    $end            reduce using rule 20 (interval -> AT NUMBER COLON NUMBER .)
+    R_BRACKET       reduce using rule 20 (interval -> AT NUMBER COLON NUMBER .)
+

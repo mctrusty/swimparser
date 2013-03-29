@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>SwimParser Help</title>
+  </head>
+  <body>
+  <a href="" id="info">Help</a>
+  <h1>Swimparser Help and Grammar Description</h1>
+  <h2>About</h2>
+  <hr />
+  <p>Swimparser parses basic swim workout notation out into a basic xml structure (<a href="../xml/SwimXml.xsd" >xsd here</a>). It uses David Beazley&#39;s PLY Parser under the
+  hood.
+  <br />PLY is a Python implementation of Lex/Yacc and can be found at: 
+  <a href="http://www.dabeaz.com/ply">http://www.dabeaz.com/ply</a></p>
+  <br />
+  <h2>Basic Use</h2>
+  <hr />
+  <span id="set"></span>
+  <h3>
+    <span id="set">Sets</span>
+  </h3>
+  <p>The basic format for a set is:
+  <br />[reps x] distance [stroke] [skill] [zone] [@time]</p>
+  <p>e.g.: 3 x 200 fr EN3 @2:30
+  <br />
+  <span style="margin-left:2.7em">4 x 50 K @1:00</span>
+  <br />
+  <br />[reps] = integer
+  <br />[stroke] = (fr)ee | bk|ba|back | (br)east | (fr)ee | (ch)oice | IM | im
+  <br />[skill] = (dr)ill | (Kk)ick
+  <br />[zone] = EN | ZONE integer
+  <br />[@time] = @(int):int
+  <br /></p>
+  <br />
+  <h2>Advanced Use</h2>
+  <hr />
+  <span id="multi-sets"></span>
+  <h3>
+    <span id="multi-sets">Multi-sets</span>
+  </h3>
+  <p>Multi-sets are sets of the form:
+  <br />[reps x] {
+  <br /></p>
+  <div style="margin-left:2.7em">[set(1)]
+  <br />[set(2)]
+  <br />...</div>}
+  <p>Where a 
+  <a href="#set">set</a> is as defined in the Basic Usage section.</p>
+  <br />
+  <span id="grammar"></span>
+  <h2>
+    <span id="grammar">Grammar</span>
+  </h2>
+  <hr />
+  <h3 id="production_rules">Production Rules</h3>&lt;set_list&gt; ::= &lt;empty&gt;
+  <div style="margin-left:5.0em">| &lt;set_list&gt; &lt;set&gt;
+  <br />| &lt;set_list&gt; &lt;multi_set&gt;
+  <br />| &lt;set&gt;
+  <br />| &lt;multi_set&gt;</div>
+  <br />&lt;multi_set&gt; ::== NUMBER MULT L_BRACKET &lt;set_list&gt; R_BRACKET
+  <br />
+  <br />&lt;set&gt; ::== &lt;count&gt; &lt;skill&gt; &lt;zone&gt; &lt;interval&gt;
+  <br />
+  <div style="margin-left:2.7em">| &lt;error&gt; &lt;skill&gt; &lt;zone&gt; &lt;interval&gt;</div>
+  <br />&lt;count&gt; ::== NUMBER
+  <div style="margin-left:3.5em">| NUMBER MULT NUMBER</div>
+  <br />&lt;skill&gt; ::== empty
+  <div style="margin-left:3.5em">| STROKE
+  <br />| DRILL
+  <br />| STROKE DRILL
+  <br />| KICK
+  <br />| STROKE KICK</div>
+  <br />&lt;zone&gt; ::== ZONE
+  <div style="margin-left:3.5em">| empty</div>
+  <br />&lt;interval&gt; ::== AT NUMBER COLON NUMBER
+  <div style="margin-left:5em">| AT NUMBER
+  <br />| empty</div>
+  <br />&lt;empty&gt; ::==
+  <h3 id="tokens">Tokens</h3>
+  <p>AT = &quot;@&quot;
+  <br />L_BRACKET = &quot;{&quot;
+  <br />R_BRACKET = &quot;}&quot;
+  <br />COLON = &quot;:&quot;
+  <br />MULT = &quot;x|X&quot;
+  <br />KICK = &quot;[Kk](ick)?&quot;
+  <br />DRILL = &quot;[Dd]r(ill)?&quot;
+  <br />STROKE = &quot;[Cc]h(oice)?|[Ff]ly?|[Bb]r(east)?|[Bb](a|k)(ck)?|[Ff]r(ee)?|[Ii][Mm]&quot;
+  <br />ZONE = &quot;(EN|ZONE)\s?\d+&quot;
+  <br />NUMBER(t) = \d+</p>
+  <br />
+  <div id="license">
+    <h2>License</h2>
+    <hr />
+    <p>Copyright (c) 2013, Michael J. Cox All rights reserved.</p>
+    <p>Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following
+    conditions are met:</p>
+    <ul>
+      <li>Redistributions of source code must retain the above copyright notice, this list of conditions and the following
+      disclaimer.</li>
+      <li>Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following
+      disclaimer in the documentation and/or other materials provided with the distribution.</li>
+      <li>* The name of Michael J. Cox nor the names of contributors may be used to endorse or promote products derived from this
+      software without specific prior written permission.</li>
+      <li style="list-style: none; display: inline">
+        <p>THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS IS&quot; AND ANY EXPRESS OR IMPLIED
+        WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+        ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+        SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+        LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+        CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
+        EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</p>
+      </li>
+    </ul>
+  </div></body>
+</html>

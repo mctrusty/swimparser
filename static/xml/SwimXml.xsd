@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+           targetNamespace="http://swimparser.appspot.com/xml" xmlns="http://swimparser.appspot.com/xml">
+  <xs:element name="setlist">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:choice maxOccurs="unbounded">
+         <xs:element name="set" type="set"></xs:element>
+          <xs:element name="multiset">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="reps" type="xs:unsignedByte" />
+                <xs:element name="setlist">
+                  <xs:complexType>
+                    <xs:sequence>
+                      <xs:element maxOccurs="unbounded" name="set" type="set">                      
+                      </xs:element>
+                    </xs:sequence>
+                  </xs:complexType>
+                </xs:element>
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="set">
+      <xs:sequence>
+        <xs:element name="reps" type="xs:unsignedShort" />
+        <xs:element name="distance" type="xs:unsignedShort" />
+        <xs:element minOccurs="0" name="skill" type="xs:string" />
+        <xs:element minOccurs="0" name="stroke" type="xs:string" />
+        <xs:element name="zone" type="xs:string" />
+        <xs:element name="time" type="xs:unsignedShort" />
+      </xs:sequence>
+  </xs:complexType>
+
+</xs:schema>
