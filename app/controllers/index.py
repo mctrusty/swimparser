@@ -13,15 +13,29 @@ path = os.path.abspath(os.path.join(basepath, '..', 'templates'))
 jinja_environment = jinja2.Environment(
     loader=jinja2.FileSystemLoader(path))
 
+def prepare_user_info(request):
+    if users.get_current_user():
+        url = users.create_logout_url(request.uri)
+        url_linktext = 'Logout'
+    else:
+        url = users.create_login_url(request.uri)
+        url_linktext = 'Login'
+    
+    template_values = {
+        'url' : url,
+        'url_linktext' : url_linktext
+    }
+    return template_values
+    
 class ContactPage(webapp2.RequestHandler):
-	def get(self):
-		template = jinja_environment.get_template('contact.html')
-		self.response.out.write(template.render())
-	
-class HelpPage(webapp2.RequestHandler):
     def get(self):
-        template = jinja_environment.get_template('help.html')
-        self.response.out.write(template.render())
+        template = jinja_environment.get_template('contact.html')
+        self.response.out.write(template.render(prepare_user_info(self.request)))
+    
+class AboutPage(webapp2.RequestHandler):
+    def get(self):
+        template = jinja_environment.get_template('about.html')
+        self.response.out.write(template.render(prepare_user_info(self.request)))
 
 class MainPage(webapp2.RequestHandler):
     def get(self):

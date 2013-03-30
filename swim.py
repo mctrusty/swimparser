@@ -19,6 +19,8 @@ def handle_500(request, response, exception):
     response.set_status(500)
     
 app = webapp2.WSGIApplication([('/', MainPage),
+							   ('/contact', ContactPage),
+							   ('/about', AboutPage),
                                ('/parse', Parse)],
                                debug=True)
 

@@ -13,7 +13,7 @@
 	                at: 'center center', 
 	                of: $('#rightpane')}
 	        })
-	  $("#about").click(function() {
+	  $("#quickhelp").click(function() {
 		about.dialog("open");
 		return false;
 	  }) 
@@ -27,6 +27,7 @@
 	    <div>
 			<input type="radio" name="format" value="json" checked>JSON</input>
 			<input type="radio" name="format" value="xml">XML</input>
+			<a href="#" id="quickhelp">Quick Help</a>
 		</div>
 		<div><input type="submit" value="Translate"></div>
 	  </form>
