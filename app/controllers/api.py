@@ -1,20 +1,17 @@
-import cgi
-import logging
+import webapp2
 import jinja2
 import os
-import webapp2
 
 from google.appengine.api import users
 from app.swimitator import parse
-from app.models.workout import Workout
 
+#jinja2 set up
 basepath = os.path.dirname(__file__)
 path = os.path.abspath(os.path.join(basepath, '..', 'templates'))
-
 jinja_environment = jinja2.Environment(
     loader=jinja2.FileSystemLoader(path))
 
-class LogPage(webapp2.RequestHandler):
+class JsonWorkout(webapp2.RequestHandler):
     def get(self):
         if users.get_current_user():
             url = users.create_logout_url(self.request.uri)
@@ -31,10 +28,13 @@ class LogPage(webapp2.RequestHandler):
             'user' : user
         }
 
-        template = jinja_environment.get_template('log.html')
+        template = jinja_environment.get_template('api.html')
         self.response.out.write(template.render(template_values))
-
-    def post(self):
-        pass
         
-app = webapp2.WSGIApplication([('/log', LogPage)])
+    def post(self):
+        workout = self.request.get('workout')
+        if workout:
+            res = parse.get_json(workout)
+        else:
+            res = 'no workout'
+        self.response.write(res)

@@ -87,7 +87,7 @@ class Parse(webapp2.RequestHandler):
         workout = self.request.get('workout')
         logging.debug('workout',workout)
         try:
-            res = parse.get_json(workout)
+            res = parse.get_pretty_json(workout)
         except:
             self.abort(500, detail='Parsing Error - please check workout syntax')
             

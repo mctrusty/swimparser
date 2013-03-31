@@ -3,5 +3,13 @@
 {% block content %}
 <div id="leftpane">
 	Log your swim workout. Members only.
+	<br />
+	<form action="/api" method="post">
+	  <div>User: {{user}}</div>
+	  <div>Date: <text name="date"></div>
+      <div>Workout: <textarea name="workout" rows="3" cols="60"></textarea></div>
+      <div><input type="submit" value="Submit"></div>
+    </form>
+
 </div>
 {% endblock %}

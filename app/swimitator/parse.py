@@ -20,4 +20,7 @@ def get_json(workout):
     sv = SwimJsonVisitor()
     cv = SwimJsonCloseVisitor()
     out = traversal.json_traverse(res, sv, cv, [])
-    return json.dumps(json.loads(out), indent = 2)
+    return out
+
+def get_pretty_json(workout):
+    return json.dumps(json.loads(get_json(workout)), indent = 2)
