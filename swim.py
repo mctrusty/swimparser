@@ -5,6 +5,7 @@ import os
 import webapp2
 
 from app.controllers.index import *
+from app.controllers.log import *
 
 def handle_404(request, response, exception):
     logging.exception(exception)
@@ -19,6 +20,7 @@ def handle_500(request, response, exception):
     response.set_status(500)
     
 app = webapp2.WSGIApplication([('/', MainPage),
+							   ('/log', LogPage),
 							   ('/contact', ContactPage),
 							   ('/about', AboutPage),
                                ('/parse', Parse)],
