@@ -21,6 +21,7 @@ def handle_500(request, response, exception):
     response.set_status(500)
     
 app = webapp2.WSGIApplication([('/', MainPage),
+							   ('/log/view', LogView),
 							   ('/log', LogPage),
 							   ('/contact', ContactPage),
 							   ('/api/workout/input', InputWorkout),

@@ -1,0 +1,14 @@
+{% extends "base.html"  %}
+{% block title %} Log Workout {% endblock %}
+{% block content %}
+<div id="leftpane">
+	<a href="/log">&lt;&lt; back to log</a>
+	<br /><br />
+	Logged workouts for {{ user }}:
+	<hr />
+	{% for workout in workouts %}
+	<b>{{ workout.date}}</b>
+	<blockquote> {{ workout.workout }}</blockquote>
+    {% endfor %}
+</div>
+{% endblock %}
