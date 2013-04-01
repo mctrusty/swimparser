@@ -75,6 +75,6 @@ class InputWorkout(webapp2.RequestHandler):
         try:
             new_workout = Workout(user = user, date = date, workout = workout)
             new_workout.put()
-			self.response.write('Success')
+            self.response.write('Success')
         except:
             self.response.write('Workout write failed.<br/>')

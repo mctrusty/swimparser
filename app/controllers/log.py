@@ -33,8 +33,5 @@ class LogPage(webapp2.RequestHandler):
 
         template = jinja_environment.get_template('log.html')
         self.response.out.write(template.render(template_values))
-
-    def post(self):
-        pass
-        
-app = webapp2.WSGIApplication([('/log', LogPage)])
+       
+#app = webapp2.WSGIApplication([('/log', LogPage)])
