@@ -73,7 +73,7 @@ class InputWorkout(webapp2.RequestHandler):
                 
         # enter workout into database
         try:
-            new_workout = Workout(user = user, date = date, workout = workout)
+            new_workout = Workout(user = user, date = date, workout = res)
             new_workout.put()
             self.response.write('Success')
         except:

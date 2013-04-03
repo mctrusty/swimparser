@@ -1,3 +1,4 @@
+import pdb
 import cgi
 import logging
 import jinja2
@@ -54,7 +55,7 @@ class LogView(webapp2.RequestHandler):
         workouts = ndb.gql("SELECT * from Workout WHERE user = :1", users.get_current_user())
         template_values = prepare_user_info(self.request)
         template_values['workouts'] = workouts
-        
+        pdb.set_trace()
         template = jinja_environment.get_template('log-view.html')
         self.response.out.write(template.render(template_values))
 
