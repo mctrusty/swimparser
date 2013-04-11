@@ -32,6 +32,7 @@ def prepare_user_info(request):
     
 class LogPage(webapp2.RequestHandler):
     def get(self):
+        pdb.set_trace()
         if users.get_current_user():
             url = users.create_logout_url(self.request.uri)
             url_linktext = 'Logout'
@@ -55,7 +56,6 @@ class LogView(webapp2.RequestHandler):
         workouts = ndb.gql("SELECT * from Workout WHERE user = :1", users.get_current_user())
         template_values = prepare_user_info(self.request)
         template_values['workouts'] = workouts
-        pdb.set_trace()
         template = jinja_environment.get_template('log-view.html')
         self.response.out.write(template.render(template_values))
 

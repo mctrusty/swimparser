@@ -8,7 +8,7 @@ handlers:
 - url: /stylesheets
   static_dir: static/stylesheets
 
-- url: /log
+- url: /log/?.*
   script: swim.app
   login: required
   
@@ -17,6 +17,9 @@ handlers:
 
 - url: /xml
   static_dir: xml
+  
+- url: /test.*
+  script: gaeunit.application
   
 - url: /.*
   script: swim.app
